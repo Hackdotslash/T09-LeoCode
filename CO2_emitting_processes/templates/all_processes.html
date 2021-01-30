@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	  <style type="text/css">
+			table { 
+			  width: 100%; 
+			  border-collapse: collapse; 
+			}
+			tr:nth-of-type(odd) { 
+			  background: #eee; 
+			}
+			th { 
+			  background: #333; 
+			  color: white; 
+			  font-weight: bold; 
+			}
+			td, th { 
+			  padding: 6px; 
+			  border: 1px solid #ccc; 
+			  text-align: left; 
+			}				
+			.center {
+				text-align: center;
+			}
+			.open-button {
+				background-color : #555;
+				color : white;
+				padding : 10px 10px;
+				border : none;
+				cursor : pointer;
+				width : 40%;
+			}
+	  </style>
+
+	  	<script>
+		function close_process(name, pid){
+			d = {name : name, pid : pid};
+			$.ajax({
+				type : 'POST',
+				url : "/close_process",
+				data : JSON.stringify(d),
+				dataType : "json",
+				contentType : "application/json; charset=utf-8",
+				success : function(data){
+					console.log(data);
+				} 
+			});
+		}
+	</script>
+</head>
+<body>
+	<h1 class = "center">CO2 EMITTING PROCESSES</h1> 
+
+	<table  class = 'table table-bordered table-striped' style = 'width : 92%; margin : 4%;'>
+			<thead bgcolor = "#D3D3D3">
+				<td><h2><b>NAME</b></h2></td>
+				<td><h2><b>PID</b></h2></td>
+				<td><h2><b>CLOSE</b></h2></td>
+			</thead>
+	{% set count = 1 %}
+	{% for row in res %}
+		<tr>
+		{% if row['name'] %}
+			<td><h3> {{row['name']}}</h3> </td>
+		{% else %}
+			<td> </td>
+		{% endif %}
+		
+		{% if row['pid'] %}
+			<td><h3> {{row['pid']}} </h3></td>
+		{% else %}
+			<td> </td>
+		{% endif %}
+
+			<td> <button class = "open-button" onclick = "close_process('{{row['name']}}', '{{row['pid']}}')" ><h3>Close</h3></button> </td>
+
+		</tr>
+	{% set count = count + 1 %}
+	{% endfor %}
+	</table>
+
+
+</body>
+</html>

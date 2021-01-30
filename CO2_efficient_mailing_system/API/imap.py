@@ -234,32 +234,53 @@ class IMAP:
         links = self.__get_unsubscribe_links(msg)
         return links
 
+    def delete_all_mails(self, account_mail, start, count=1):
+        command = "a02 FETCH " + str(start - count) + ":" + str(start) + \
+            " (FLAGS BODY[HEADER.FIELDS (List-Unsubscribe mailto FROM DATE SUBJECT)])" + \
+            self.__MAIL_NEW_LINE
+        self.__main_socket.send(command.encode())
+        success, msg = self.__get_whole_message()
+        print(msg)
+        if not success:
+            raise("Something went wrong! Please try again")
+        msg = self.__separate_mail_headers(msg)
+
+        total_deleted_mails = 0
+        for index, item in enumerate(msg):
+            item = self.__get_unsubscribe_headers(item)
+            mail = "".join(item[2].split()).lower()
+            account_mail = "".join(account_mail.split()).lower()
+            if mail == account_mail:
+                print(start - count + index)
+                self.delete_email(start - count + index)
+                start -= 1
+                total_deleted_mails += 1
+        return total_deleted_mails
+
     def delete_email(self, index):
         '''To delete mail
 
             Arguements \t
             index: index of email
         '''
+        # Copy the mail to trash
+        command = "a02 COPY " + str(index) + \
+            " [Gmail]/Trash" + self.__MAIL_NEW_LINE
+        self.__main_socket.send(command.encode())
+        success, msg = self.__get_whole_message()
+
+        # Store the deleted flag
         command = "a02 STORE " + \
             str(index) + " +FLAGS (\\Deleted)" + self.__MAIL_NEW_LINE
         self.__main_socket.send(command.encode())
         success, msg = self.__get_whole_message()
-        if success:
+        if True:
+            # Delete the mail
             command = "a02 EXPUNGE" + self.__MAIL_NEW_LINE
             self.__main_socket.send(command.encode())
             success, msg = self.__get_whole_message()
             if success:
-                number_of_mails = 0
-                # Get the number of mails in mailbox
-                lines_arr = msg.splitlines()
-                for item in lines_arr:
-                    try:
-                        tokens = item.split(" ")
-                        if tokens[2] == "EXISTS":
-                            number_of_mails = int(tokens[1])
-                    except:
-                        continue
-                return number_of_mails
+                return True
             else:
                 raise Exception("Something went wrong! Please try again")
         else:
@@ -292,6 +313,7 @@ class IMAP:
                 # Receive message from server
                 recv_bytes = self.__main_socket.recv(1024)
                 temp_msg = recv_bytes.decode(errors='ignore')
+                print(temp_msg)
                 # Split the lines from the received message
                 lines_arr = temp_msg.splitlines()
 
@@ -374,102 +396,36 @@ class IMAP:
         except Exception as e:
             return encoded_words
 
-    def __decode_mail_headers(self, msg):
-        '''To separate subject, from and date from imap header'''
+    def __get_unsubscribe_headers(self, item):
+        '''Get Unsubscribe link and mail from header'''
 
-        lines_arr = msg.splitlines()
-        index = 0
-        subject = ""
-        date = ""
-        mail_from = ""
-        subject_key = "subject:"
-        date_key = "date:"
-        from_key = "from:"
-
-        # Separate subject from returned header
-        sub_index = 0
-        for index, line in enumerate(lines_arr):
-            if line.lower().startswith(subject_key):
-                sub_index = index
-                break
-        subject = lines_arr[sub_index][len(subject_key):]
-        for line in lines_arr[sub_index + 1:]:
-            if line.lower().startswith(date_key) or line.lower().startswith(from_key):
-                break
-            subject += line
-        subject = subject.strip()
-
-        # Separate date from header
-        date_index = 0
-        for index, line in enumerate(lines_arr):
-            if line.lower().startswith(date_key):
-                date_index = index
-                break
-        date = lines_arr[date_index][len(date_key):]
-        for line in lines_arr[date_index + 1:]:
-            if line.lower().startswith(subject_key) or line.lower().startswith(from_key):
-                break
-            date += line
-        date = date.strip()
-
-        # Separate mail_from from header
-        from_index = 0
-        for index, line in enumerate(lines_arr):
-            if line.lower().startswith(from_key):
-                from_index = index
-                break
-        mail_from = lines_arr[from_index][len(date_key):]
-        for line in lines_arr[from_index + 1:]:
-            if line.lower().startswith(subject_key) or line.lower().startswith(date_key):
-                break
-            mail_from += line
-        mail_from = mail_from.strip()
-
-        main_subject = ""
-        # Check if the subject is in encoded words syntax
-        if subject.startswith("=?"):
-            # Normalize the data to ascii
-            while subject.startswith("=?"):
-                output, ending_index = self.__extract_text_from_encoded_words_syntax(
-                    subject)
-                main_subject += output
-                subject = subject[ending_index:]
-        else:
-            main_subject = subject
-
-        main_mail_from = ""
-        # Check if the date is in encoded words syntax
-        if mail_from.startswith("=?"):
-            while mail_from.startswith("=?"):
-                output, ending_index = self.__extract_text_from_encoded_words_syntax(
-                    mail_from)
-                main_mail_from += output
-                mail_from = mail_from[ending_index:]
-        main_mail_from += mail_from
-        return {'Subject': main_subject, 'Date': date, 'From': main_mail_from}
-
-    def __get_unsubscribe_links(self, msg):
         unsubscribe_key = "List-Unsubscribe:"
         from_key = "From:"
+        unsubscribe_link = ""
+        mail_from_name = ""
+        mail_from_email = ""
+        for line in item.splitlines():
+            if line.startswith(from_key):
+                mail_from = line[len(from_key) + 1:]
+                if mail_from.startswith("=?"):
+                    output, ending_index = self.__extract_text_from_encoded_words_syntax(
+                        mail_from)
+                    mail_from_name = output
+                    mail_from_email = mail_from[ending_index:]
+                else:
+                    mail_from_name = mail_from[:mail_from.find("<")]
+                    mail_from_email = mail_from[mail_from.find("<"):]
+            elif line.startswith(unsubscribe_key):
+                unsubscribe_link = line[len(unsubscribe_key) + 2:-1]
+        return unsubscribe_link, mail_from_name, mail_from_email
+
+    def __get_unsubscribe_links(self, msg):
+        '''Separate different unsubscribe links and account names from email headers'''
+
         unsubscribe_list = []
         for item in msg:
-            unsubscribe_link = ""
-            mail_from_name = ""
-            mail_from_email = ""
-            for line in item.splitlines():
-                if line.startswith(from_key):
-                    mail_from = line[len(from_key) + 1:]
-
-                    if mail_from.startswith("=?"):
-                        output, ending_index = self.__extract_text_from_encoded_words_syntax(
-                            mail_from)
-                        mail_from_name = output
-                        mail_from_email = mail_from[ending_index:]
-                    else:
-                        mail_from_name = mail_from[:mail_from.find("<")]
-                        mail_from_email = mail_from[mail_from.find("<"):]
-                elif line.startswith(unsubscribe_key):
-                    unsubscribe_link = line[len(unsubscribe_key) + 2:-1]
+            unsubscribe_link, mail_from_name, mail_from_email = self.__get_unsubscribe_headers(
+                item)
             if unsubscribe_link:
                 temp = list(
                     filter(lambda item: item['account_email'] == mail_from_email, unsubscribe_list))
@@ -490,4 +446,5 @@ if __name__ == "__main__":
     imap = IMAP(old_mail, old_pass, debugging=True)
     folders = imap.get_mailboxes()
     num = imap.select_mailbox(folders[2])
-    links = imap.list_unsubscribe(num, count=num - 1)
+    imap.delete_email([num, num - 1, num - 2])
+    # links = imap.list_unsubscribe(num, count=num - 1)
