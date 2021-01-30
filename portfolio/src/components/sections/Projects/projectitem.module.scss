@@ -1,0 +1,170 @@
+$titleColor: #5ec4ac;
+
+.container {
+    margin-bottom: 4rem;
+}
+
+.project__container {
+    :nth-child(even) {
+        .main {
+            flex-direction: row;
+        }
+    }
+
+    :last-child {
+        margin-bottom: 0;
+        .container {
+            margin-bottom: 4rem;
+        }
+    }
+}
+
+.main {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.desc {
+    flex: 4;
+    padding: 0.75rem 1rem;
+    padding-left: 0;
+    margin-right: 0.5rem;
+}
+
+.title {
+    margin-top: 1rem;
+    h3 {
+        margin: 10px;
+        margin-left: 0;
+    }
+}
+
+.image__div {
+    flex: 3;
+    margin-top: 2.35rem;
+    margin-right: 1.5rem;
+
+    img {
+        border-radius: 10px;
+        background-color: #e0e0e0;
+        // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+            rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    }
+}
+
+.categories {
+    display: flex;
+    // flex-wrap: nowrap;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    :first-child {
+        margin-left: 0;
+    }
+    div {
+        // margin-left: 0.75rem;
+        margin-right: 0.5rem;
+        margin-top: 0.5rem;
+        padding: 0.25rem 0.75rem;
+        background-color: #121212;
+        // border: 2px solid red;
+        border-radius: 8px;
+        transition: ease-in 200ms all;
+    }
+
+    div:hover {
+        color: #ccc;
+        background-color: #101010;
+        transform: translateY(-5%);
+    }
+}
+
+.links {
+    a {
+        text-decoration: none;
+        margin-right: 0.5rem;
+        color: $titleColor;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 850px) {
+    .main {
+        flex-direction: column;
+    }
+
+    .project__container {
+        :nth-child(even) {
+            .main {
+                flex-direction: column;
+            }
+        }
+    }
+
+    .image__div {
+        margin-right: 2rem;
+    }
+
+    .desc {
+        margin-right: 0;
+    }
+}
+
+.see_more_link {
+    .resume__link {
+        // border: 2px solid red;
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        // cursor: pointer;
+    }
+
+    a {
+        color: $titleColor;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border: 2px solid $titleColor;
+        transition: 150ms ease-in all;
+        position: relative;
+        background: none;
+        overflow: hidden;
+        z-index: 100;
+
+        &::after {
+            content: "";
+            position: absolute;
+            display: block;
+            bottom: 0;
+            left: 0;
+            top: 0;
+            right: 0;
+
+            height: 100%;
+            background: $titleColor;
+            transform: scaleY(0);
+            width: 100%;
+            z-index: -1;
+            // opacity: 100;
+            transition: 150ms ease-in transform;
+            transform-origin: top;
+        }
+    }
+
+    a:hover {
+        color: #121212 !important;
+
+        &::after {
+            transform: scaleY(1);
+            transform-origin: bottom;
+        }
+    }
+}
+
+.disabled {
+    // display: none;
+}
+
+.enabled {
+    display: block;
+}

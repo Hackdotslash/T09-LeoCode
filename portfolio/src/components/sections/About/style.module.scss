@@ -1,0 +1,107 @@
+.about__container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+$titleColor: #5ec4ac;
+
+.about__text {
+    flex: 2;
+
+    .resume__link {
+        // border: 2px solid red;
+        margin-top: 1.5rem;
+        display: flex;
+        @media (max-width: 767px) {
+            justify-content: center;
+        }
+    }
+
+    a {
+        color: $titleColor;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border: 2px solid $titleColor;
+        transition: 150ms ease-in color;
+        position: relative;
+        background: none;
+        overflow: hidden;
+        z-index: 100;
+
+        &::after {
+            content: "";
+            position: absolute;
+            display: block;
+            bottom: 0;
+            left: 0;
+            top: 0;
+            right: 0;
+
+            height: 110%;
+            background: $titleColor;
+            transform: scaleY(0);
+            width: 110%;
+            z-index: -1;
+            // opacity: 100;
+            transition: 150ms ease-in transform;
+            transform-origin: top;
+        }
+    }
+
+    a:hover {
+        color: #121212 !important;
+
+        &::after {
+            transform: scaleY(1);
+            transform-origin: bottom;
+        }
+    }
+
+    // a:hover:after {
+    //     transform: scaleY(1);
+    //     transform-origin: bottom;
+    // }
+}
+
+.about__image {
+    flex: 1;
+    margin-left: 2rem;
+    // border: 2px solid red;
+}
+
+.image__container {
+    // border: 2px solid red;
+    width: 210px;
+    height: 210px;
+    border-radius: calc(240px / 2);
+    overflow: hidden;
+    background-color: #121212;
+    // box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+        rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+    img {
+        max-width: 175px;
+        max-height: 175px;
+        // top: 50% !important;
+        // transform: translate(-50%, -50%);
+        left: 50% !important;
+        transform: translateX(-50%);
+        top: 17% !important;
+        // object-position: center center;
+    }
+}
+
+@media (max-width: 767px) {
+    .about__container {
+        flex-direction: column;
+    }
+
+    .about__image {
+        margin: 1.5rem 0px 1rem;
+    }
+
+    .image__container {
+        margin: 0px auto;
+    }
+}

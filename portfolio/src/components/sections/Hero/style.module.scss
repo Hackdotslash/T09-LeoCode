@@ -1,0 +1,95 @@
+$bgColor: #181818;
+$fontColor: #ccc;
+$svgSize: clamp(24px, 2.5vw, 32px);
+$titleColor: #5ec4ac;
+$svgColor: #35f1c5;
+$maxTitleSize: 70px;
+$titleSize: 4.5vw;
+$minTitleSize: 35px;
+
+// $titleColor: #a6d4fa;
+
+.link {
+    margin-left: 20px;
+    background-color: transparent;
+    transition: ease-in 150ms all;
+}
+
+.link:first-child {
+    margin: 0;
+}
+
+.svg__links {
+    width: $svgSize;
+    height: $svgSize;
+    fill: $fontColor;
+}
+
+.link:hover {
+    transform: translateY(-10%);
+    svg {
+        path {
+            fill: $svgColor;
+        }
+    }
+}
+
+.main__links {
+    display: flex;
+}
+
+.title {
+    font-size: clamp($minTitleSize, $titleSize, $maxTitleSize);
+}
+
+.hero {
+    min-height: 80vh;
+}
+
+.inner {
+    div {
+        overflow: hidden;
+    }
+
+    h2 {
+        font-size: clamp(22px, 2.25vw, 35px) !important;
+        color: #bbb !important;
+    }
+
+    h3 {
+        font-size: clamp(18px, 1.75vw, 24px);
+
+        span {
+            display: inline-block;
+            @keyframes hello {
+                0% {
+                    transform: rotate(-15deg);
+                }
+                20%,
+                100% {
+                    transform: rotate(25deg);
+                }
+            }
+            font-size: clamp(20px, 1.85vw, 26px);
+
+            padding-bottom: 5px;
+        }
+    }
+}
+
+@media (max-width: 1025px) {
+    .hero {
+        min-height: 96vh;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero {
+        padding: 0px 0.5rem;
+        padding-bottom: 5rem;
+    }
+
+    .inner {
+        padding: 0 1rem;
+    }
+}
