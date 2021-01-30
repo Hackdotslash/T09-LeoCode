@@ -243,31 +243,43 @@ class IMAP:
         if not success:
             raise("Something went wrong! Please try again")
         msg = self.__separate_mail_headers(msg)
+
+        total_deleted_mails = 0
+        main_arr = []
         for index, item in enumerate(msg):
-            temp = item
             item = self.__get_unsubscribe_headers(item)
             mail = "".join(item[2].split()).lower()
             account_mail = "".join(account_mail.split()).lower()
             if mail == account_mail:
-                self.delete_email(start - count + index)
-                count -= 1
-        return True
+                main_arr.append(start - count + index)
+        self.delete_email(main_arr)
 
-    def delete_email(self, index):
+        return total_deleted_mails
+
+    def delete_email(self, arr):
         '''To delete mail
 
             Arguements \t
             index: index of email
         '''
         # Copy the mail to trash
-        command = "a02 COPY " + str(index) + \
-            " [Gmail]/Trash" + self.__MAIL_NEW_LINE
+        command = "a02 COPY "
+        for index in arr:
+            command += str(index) + ","
+        command = command[:-1]
+        command += " [Gmail]/Trash" + self.__MAIL_NEW_LINE
+
         self.__main_socket.send(command.encode())
         success, msg = self.__get_whole_message()
+        print(success, msg)
 
-        # Store the deleted flag
-        command = "a02 STORE " + \
-            str(index) + " +FLAGS (\\Deleted)" + self.__MAIL_NEW_LINE
+        # Copy the mail to trash
+        command = "a02 STORE "
+        for index in arr:
+            command += str(index) + ","
+        command = command[:-1]
+        command += " +FLAGS (\\Deleted)" + self.__MAIL_NEW_LINE
+
         self.__main_socket.send(command.encode())
         success, msg = self.__get_whole_message()
         if True:
@@ -309,6 +321,7 @@ class IMAP:
                 # Receive message from server
                 recv_bytes = self.__main_socket.recv(1024)
                 temp_msg = recv_bytes.decode(errors='ignore')
+                print(temp_msg)
                 # Split the lines from the received message
                 lines_arr = temp_msg.splitlines()
 
@@ -441,4 +454,6 @@ if __name__ == "__main__":
     imap = IMAP(old_mail, old_pass, debugging=True)
     folders = imap.get_mailboxes()
     num = imap.select_mailbox(folders[2])
-    links = imap.list_unsubscribe(num, count=num - 1)
+    imap.delete_email([num, num - 1, num - 2])
+    # links = imap.list_unsubscribe(num, count=num - 1)
+    # imap.delete_all_mails("<noreply@dare2compete.news>", num, 20)
