@@ -24,7 +24,7 @@ def delete_all_mails_main(email, password, account_mail, count=-1):
     main_count = count
     if main_count == -1:
         main_count = num - 1
-    imap.delete_all_mails(account_mail, num, main_count)
+    return imap.delete_all_mails(account_mail, num, main_count)
 
 
 @app.route("/")
@@ -76,9 +76,9 @@ def delete_all_mails_route():
         mail_count = -1
         if 'count' in request.json:
             mail_count = request.json['count']
-        delete_all_mails_main(
+        count = delete_all_mails_main(
             email, password, account_mail, count=mail_count)
-        return "Delete all the mails", 200
+        return "Deleted " + count + " mails", 200
     except Exception as e:
         print(e)
         return "Failed to delete the mails", 400

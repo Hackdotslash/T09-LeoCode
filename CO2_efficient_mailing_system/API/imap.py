@@ -240,19 +240,20 @@ class IMAP:
             self.__MAIL_NEW_LINE
         self.__main_socket.send(command.encode())
         success, msg = self.__get_whole_message()
+        print(msg)
         if not success:
             raise("Something went wrong! Please try again")
         msg = self.__separate_mail_headers(msg)
 
         total_deleted_mails = 0
-        main_arr = []
         for index, item in enumerate(msg):
             item = self.__get_unsubscribe_headers(item)
             mail = "".join(item[2].split()).lower()
             account_mail = "".join(account_mail.split()).lower()
             if mail == account_mail:
+                print(start - count + index)
                 self.delete_email(start - count + index)
-                count -= 1
+                start -= 1
                 total_deleted_mails += 1
         return total_deleted_mails
 
@@ -447,4 +448,3 @@ if __name__ == "__main__":
     num = imap.select_mailbox(folders[2])
     imap.delete_email([num, num - 1, num - 2])
     # links = imap.list_unsubscribe(num, count=num - 1)
-    imap.delete_all_mails("<noreply@dare2compete.news>", num, 20)
