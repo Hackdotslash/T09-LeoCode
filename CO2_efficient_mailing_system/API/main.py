@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
 from imap import IMAP
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 
 def login(email, password):
@@ -9,11 +11,11 @@ def login(email, password):
     return imap
 
 
-def get_unsubscribe_list(email, password):
+def get_unsubscribe_list(email, password, main_count):
     imap = IMAP(email, password, debugging=False)
     folders = imap.get_mailboxes()
-    num = imap.select_mailbox(folders[2])
-    links = imap.list_unsubscribe(num, count=num - 1)
+    num = imap.select_mailbox(folders[0])
+    links = imap.list_unsubscribe(num, count=main_count)
     return links
 
 
@@ -54,7 +56,11 @@ def unsubscribe_list_route():
     try:
         email = request.json['email']
         password = request.json['password']
-        links = get_unsubscribe_list(email, password)
+        main_count = 20
+        if 'count' in request.json:
+            main_count = request.json['count']
+        links = get_unsubscribe_list(email, password, main_count)
+
         return jsonify({'data': links}), 200
     except:
         return "Failed to fetch unsubscribe list", 400
@@ -78,7 +84,7 @@ def delete_all_mails_route():
             mail_count = request.json['count']
         count = delete_all_mails_main(
             email, password, account_mail, count=mail_count)
-        return "Deleted " + count + " mails", 200
+        return jsonify({'count': count}), 200
     except Exception as e:
         print(e)
         return "Failed to delete the mails", 400

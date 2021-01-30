@@ -1,24 +1,14 @@
 # To get the mail unsubscribe list
-# POST http://localhost:5000/getUnsubscribeList
-# Content-Type: application/json
-
-
-
-# To login to gmail
-# POST  http://localhost:5000/login
-# Content-Type: application/json
-# {
-#     "email":"your_email",
-#     "password": "your_gmail_app_password" 
-# }
-
-# To Delete mails
-POST http://localhost:5000/deleteAllMails
+POST http://localhost:5000/getUnsubscribeList
 Content-Type: application/json
 
 {
-    "email": 
-    "password": 
-    "account_mail": 
-    "count": 
+    "email":"rohitkc2810@gmail.com",
+    "password": "cxrvnoxquriyedlt" 
 }
+
+
+
+
+
+
