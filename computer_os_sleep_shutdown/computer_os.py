@@ -22,7 +22,11 @@ def computer_sleep(seconds_until_sleep=2, verbose=1):
         else:
             if psutil.WINDOWS:
                 sys.exit("computer_sleep Not Implemented for WINDOWS")      
-            
+
+@app.route("/")
+def main():
+    return "Wow"
+
 @app.route('/shutdown', methods=['POST'])
 def shutdown_fun():
 	return jsonify(shutdown())
@@ -33,4 +37,4 @@ def computer_sleep_fun():
 	return jsonify(computer_sleep())
 
 if __name__ == '__main__': 
-	app.run(debug = True) 
+	app.run(debug = False) 
