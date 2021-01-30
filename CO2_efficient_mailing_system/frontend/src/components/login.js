@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class Login extends Component {
   constructor(props) {
@@ -13,13 +14,30 @@ class Login extends Component {
   onChangeEmail = (e) => this.setState({ email: e.target.value });
   onChangePassword = (e) => this.setState({ password: e.target.value });
 
-  validate() {}
+  validate(event) {
+    event.preventDefault();
+    axios
+      .post("http://localhost:5000/login", {
+        email: this.state.email,
+        password: this.state.password,
+      })
+      .then((res) => {
+        localStorage.setItem("email", this.state.email);
+        localStorage.setItem("password", this.state.password);
+        window.location = "/go";
+      })
+      .catch((err) => {
+        alert("wrong email or password!");
+      });
+  }
 
   render() {
     return (
       <div style={{ width: "30%" }} className="container">
         <form>
-          <h3 class="blockquote">Enter your Email and Password to continue</h3>
+          <h3 className="blockquote">
+            Enter your Email and Password to continue
+          </h3>
           <br />
           <div className="form-group">
             <label>Email address</label>

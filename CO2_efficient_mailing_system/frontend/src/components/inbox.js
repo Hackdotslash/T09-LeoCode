@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import Email from "./email";
 import "../static/inbox.css";
 import "../static/font-awesome/css/font-awesome.min.css";
@@ -12,7 +13,27 @@ class Inbox extends Component {
   }
 
   componentDidMount() {
-    // get mails
+    if (
+      localStorage.getItem("email") === null ||
+      localStorage.getItem("password") === null
+    )
+      window.location = "/login";
+    else {
+      axios
+        .post("http://localhost:5000/getUnsubscribeList", {
+          email: localStorage.getItem("email"),
+          password: localStorage.getItem("password"),
+        })
+        .then((res) => {
+          this.setState({ mails: res.data.data });
+        })
+        .catch((err) => {
+          alert("something didn't go well! Please login again");
+          new Promise((r) => setTimeout(r, 2000)).then(() => {
+            window.location = "/login";
+          });
+        });
+    }
   }
 
   render() {
