@@ -2,10 +2,6 @@
 # POST http://localhost:5000/getUnsubscribeList
 # Content-Type: application/json
 
-# {
-#    "email": "chaudharirohit2810@gmail.com",
-#     "password": "wnisuubvmawayinq"
-# }
 
 
 # To login to gmail
