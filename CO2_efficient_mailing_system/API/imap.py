@@ -251,35 +251,26 @@ class IMAP:
             mail = "".join(item[2].split()).lower()
             account_mail = "".join(account_mail.split()).lower()
             if mail == account_mail:
-                main_arr.append(start - count + index)
-        self.delete_email(main_arr)
-
+                self.delete_email(start - count + index)
+                count -= 1
+                total_deleted_mails += 1
         return total_deleted_mails
 
-    def delete_email(self, arr):
+    def delete_email(self, index):
         '''To delete mail
 
             Arguements \t
             index: index of email
         '''
         # Copy the mail to trash
-        command = "a02 COPY "
-        for index in arr:
-            command += str(index) + ","
-        command = command[:-1]
-        command += " [Gmail]/Trash" + self.__MAIL_NEW_LINE
-
+        command = "a02 COPY " + str(index) + \
+            " [Gmail]/Trash" + self.__MAIL_NEW_LINE
         self.__main_socket.send(command.encode())
         success, msg = self.__get_whole_message()
-        print(success, msg)
 
-        # Copy the mail to trash
-        command = "a02 STORE "
-        for index in arr:
-            command += str(index) + ","
-        command = command[:-1]
-        command += " +FLAGS (\\Deleted)" + self.__MAIL_NEW_LINE
-
+        # Store the deleted flag
+        command = "a02 STORE " + \
+            str(index) + " +FLAGS (\\Deleted)" + self.__MAIL_NEW_LINE
         self.__main_socket.send(command.encode())
         success, msg = self.__get_whole_message()
         if True:
@@ -456,4 +447,4 @@ if __name__ == "__main__":
     num = imap.select_mailbox(folders[2])
     imap.delete_email([num, num - 1, num - 2])
     # links = imap.list_unsubscribe(num, count=num - 1)
-    # imap.delete_all_mails("<noreply@dare2compete.news>", num, 20)
+    imap.delete_all_mails("<noreply@dare2compete.news>", num, 20)
