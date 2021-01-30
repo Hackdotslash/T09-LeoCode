@@ -21,8 +21,8 @@ POST http://localhost:5000/deleteAllMails
 Content-Type: application/json
 
 {
-    "email": "chaudharirohit2810@gmail.com",
-    "password": "wnisuubvmawayinq",
-    "account_mail": "<noreply@dare2compete.news>",
-    "count": 200
+    "email": 
+    "password": 
+    "account_mail": 
+    "count": 
 }
