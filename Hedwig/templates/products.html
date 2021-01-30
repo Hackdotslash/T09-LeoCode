@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		/* Font */
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
+/* Design */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #ecf9ff;
+}
+
+body {
+  color: #272727;
+  font-family: 'Quicksand', serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  padding: 1rem;
+}
+
+.main{
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.btn {
+  color: #000000;
+  padding: 0.8rem;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-weight: 400;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+}
+
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cards_item {
+  display: flex;
+  padding: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .cards_item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 56rem) {
+  .cards_item {
+    width: 33.3333%;
+  }
+}
+
+.card {
+	margin-top : 15%;
+	margin-left : 15%;	
+  background-color: #B0C4DE;
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card_content {
+  padding: 1rem;
+  background: linear-gradient(to bottom left, #D3D3D3 40%, #D3D3D4 100%);
+}
+
+.card_title {
+  color: #000000;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 0px;
+}
+
+.card_text {
+  color: #000000;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;    
+  font-weight: 400;
+}
+.made_by{
+  font-weight: 400;
+  font-size: 13px;
+  margin-top: 35px;
+  text-align: center;
+}
+	</style>
+</head>
+<body  style = "background-color:#B0C4DE">
+	<img src = "/static/owl.png" style = "display : inline; width : 50%; margin-left: 25%; margin-top : 3%;">
+ 	 <h1 style = "font-size:90px; margin-top:0%;"><b>Hedwig</b></h1>
+	 <h1 style = "font-size:50px; margin-top: -1.5%;"><b>One stop to reduce carbon emissions in tech world</b></h1>
+	 
+ 	 <!-- <h1 style = "font-size:40px; margin-top:5%;"><b>Hedwig Products</b></h1> -->
+	 <!-- <h1 style = "font-size:50px; margin-top: -1%;"><b>Products</b></h1> -->
+  
+	<div class="main" style = "margin-top:3%;">
+  <ul class="cards">
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="../static/owl.png"></div>
+        <div class="card_content">
+          <h2 class="card_title">Hed Mail</h2>
+          <p class="card_text">Mailing system to reduce CO2 emission</p>
+          <button class="btn card_btn"><a href = "http://localhost:5000/hed_mail" target="_blank">View Product</a></button>
+        </div>
+      </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="../static/owl.png"></div>
+        <div class="card_content">
+          <h2 class="card_title">Hed Process</h2>
+          <p class="card_text">Know the processes using internet and emitting CO2</p>
+          <button class="btn card_btn"><a href = "http://localhost:5000/hed_process" target="_blank">View Product</a></button>
+        </div>
+      </div>
+    </li><li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="../static/owl.png"></div>
+        <div class="card_content">
+          <h2 class="card_title">Hed Compress</h2>
+          <p class="card_text">Compress files before broadcasting</p>
+          <button class="btn card_btn"><a href = "http://localhost:5000/hed_compress" target="_blank">View Product</a></button>
+        </div>
+      </div>
+    </li><li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="../static/owl.png"></div>
+        <div class="card_content">
+          <h2 class="card_title">Hed ProOS</h2>
+          <p class="card_text">Manage system through andriod app</p>
+          <button class="btn card_btn"><a href = "" target="_blank">View Product</a></button>
+        </div>
+      </div>
+    </li>
+    </li><li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="../static/owl.png"></div>
+        <div class="card_content">
+          <h2 class="card_title">Hed Mail</h2>
+          <p class="card_text">Mailing system to reduce CO2 emission</p>
+          <button class="btn card_btn"><a href = "" target="_blank">View Product</a></button>
+        </div>
+      </div>
+    </li>
+    </li><li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="../static/owl.png"></div>
+        <div class="card_content">
+          <h2 class="card_title">Hed Mail</h2>
+          <p class="card_text">Mailing system to reduce CO2 emission</p>
+          <button class="btn card_btn"><a href = "" target="_blank">View Product</a></button>
+        </div>
+      </div>
+    </li>
+    
+    <!---->
+    <!-- <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="https://picsum.photos/500/300/?image=5"></div>
+        <div class="card_content">
+          <h2 class="card_title">Card Grid Layout</h2>
+          <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+          <button class="btn card_btn">Read More</button>
+        </div>
+      </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="https://picsum.photos/500/300/?image=11"></div>
+        <div class="card_content">
+          <h2 class="card_title">Card Grid Layout</h2>
+          <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+          <button class="btn card_btn">Read More</button>
+        </div>
+      </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="https://picsum.photos/500/300/?image=14"></div>
+        <div class="card_content">
+          <h2 class="card_title">Card Grid Layout</h2>
+          <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+          <button class="btn card_btn">Read More</button>
+        </div>
+      </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="https://picsum.photos/500/300/?image=17"></div>
+        <div class="card_content">
+          <h2 class="card_title">Card Grid Layout</h2>
+          <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+          <button class="btn card_btn">Read More</button>
+        </div>
+      </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image"><img src="https://picsum.photos/500/300/?image=2"></div>
+        <div class="card_content">
+          <h2 class="card_title">Card Grid Layout</h2>
+          <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+          <button class="btn card_btn">Read More</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+ -->
+<h3 class="made_by">Made with ♡</h3>
+</body>
+</html>
