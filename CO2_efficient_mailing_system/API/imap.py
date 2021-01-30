@@ -223,9 +223,8 @@ class IMAP:
             pass
 
     def list_unsubscribe(self, start, count=1):
-        command = "a02 FETCH " + str(start - count) + ":" + str(start) + \
-            " (FLAGS BODY[HEADER.FIELDS (List-Unsubscribe mailto FROM)])" + \
-            self.__MAIL_NEW_LINE
+        command = "a02 FETCH " + str(start - count) + ":" + str(
+            start) + " (FLAGS BODY[HEADER.FIELDS (List-Unsubscribe mailto FROM)])" + self.__MAIL_NEW_LINE
         self.__main_socket.send(command.encode())
         success, msg = self.__get_whole_message()
         if not success:
@@ -313,7 +312,6 @@ class IMAP:
                 # Receive message from server
                 recv_bytes = self.__main_socket.recv(1024)
                 temp_msg = recv_bytes.decode(errors='ignore')
-                print(temp_msg)
                 # Split the lines from the received message
                 lines_arr = temp_msg.splitlines()
 
@@ -445,6 +443,9 @@ if __name__ == "__main__":
     old_pass = os.getenv('PASSWORD')
     imap = IMAP(old_mail, old_pass, debugging=True)
     folders = imap.get_mailboxes()
-    num = imap.select_mailbox(folders[2])
-    imap.delete_email([num, num - 1, num - 2])
+    num = imap.select_mailbox(folders[0])
+    # imap.list_unsubscribe(num, num - 1)
+    links = imap.list_unsubscribe(num, count=100)
+    print(links)
+    # imap.delete_email([num, num - 1, num - 2])
     # links = imap.list_unsubscribe(num, count=num - 1)
