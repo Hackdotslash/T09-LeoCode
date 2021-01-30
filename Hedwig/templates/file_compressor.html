@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	  <style type="text/css">
+			table { 
+			  width: 100%; 
+			  border-collapse: collapse; 
+			}
+			tr:nth-of-type(odd) { 
+			  background: #eee; 
+			}
+			th { 
+			  background: #333; 
+			  color: white; 
+			  font-weight: bold; 
+			}
+			td, th { 
+			  padding: 6px; 
+			  border: 1px solid #ccc; 
+			  text-align: left; 
+			}				
+			.center {
+				text-align: center;
+			}
+			.open-button {
+				background-color : #555;
+				color : white;
+				padding : 10px 10px;
+				border : none;
+				cursor : pointer;
+				width : 10%;
+			}
+			.custom-file-upload {
+			    border: 1px solid #ccc;
+			    display: inline-block;
+			    padding: 6px 12px;
+			    cursor: pointer;
+			}
+
+	  </style>
+
+	  	<script>
+		function close_process(name, pid){
+			d = {name : name, pid : pid};
+			$.ajax({
+				type : 'POST',
+				url : "/close_process",
+				data : JSON.stringify(d),
+				dataType : "json",
+				contentType : "application/json; charset=utf-8",
+				success : function(data){
+					console.log(data);
+				} 
+			});
+		}
+	</script>
+</head>
+<body style = "background-color:#B0C4DE">
+	<img src = "/static/owl.png" style = "display : inline; width : 15%; margin-left: 5%; margin-top : 3%;">
+	<h1 class = "center"><b>Hed Compress</b></h1> 
+	<h2 class = "center"><b>Compress files with ease</b></h1> 
+	<div style = "margin-top:5%;">
+	
+	<div class = "center">
+	 <form action = "http://localhost:5000/putFile" method = "POST" 
+         enctype = "multipart/form-data">
+       <label class="custom-file-upload">
+   			 <input style = "margin-left: 15%; font-size : 20px;" type="file" name = "file"/>
+		</label><br/>
+<!-- 
+         <input style = "margin-left: 45%;" type = "file" name = "file" /><br/> -->
+         <input style = "font-size: 20px; margin-top:2%;" class = "open-button" type = "submit" value = "COMPRESS"/>
+      </form>   
+     </div>
+ </div>
+</body>
+</html>
