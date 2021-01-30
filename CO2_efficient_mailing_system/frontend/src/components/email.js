@@ -7,8 +7,7 @@ class Email extends Component {
     super(props);
 
     this.state = {
-      content: props.content,
-      time: props.time,
+      sender: props.sender,
     };
   }
 
@@ -32,18 +31,7 @@ class Email extends Component {
           <span className="fa fa-envelope"></span>
         </td>
         <td role="gridcell" tabindex="-1" className="sui-cell">
-          {this.state.content}
-        </td>
-        <td
-          style={{ textAlign: "center" }}
-          role="gridcell"
-          tabindex="-1"
-          className="sui-cell"
-        >
-          <span className="fa fa-paperclip"></span>
-        </td>
-        <td role="gridcell" tabindex="-1" className="sui-cell">
-          {this.state.time}
+          {this.state.sender}
         </td>
       </tr>
     );
