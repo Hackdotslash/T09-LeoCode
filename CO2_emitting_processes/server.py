@@ -67,10 +67,9 @@ def all_internet_processes():
         output.append({"name" : names[0], "pid" : pidd})
     return render_template('all_processes.html', res = output)
 
-
 @app.route('/', methods = ['GET'])
 def fun():
     return jsonify(1)
 
 if __name__ == '__main__': 
-	app.run(debug = True) 
+	app.run(debug = True, host = "0.0.0.0") 
