@@ -30,7 +30,12 @@ def shutdown_fun():
 
 @app.route('/computer_sleep', methods=['POST'])
 def computer_sleep_fun():
-	return jsonify(computer_sleep())
+        return "Hi Wow"
+	#return jsonify(computer_sleep())
+
+@app.route("/")
+def test():
+    return "Wow"
 
 if __name__ == '__main__': 
 	app.run(debug = True) 
