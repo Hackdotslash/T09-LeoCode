@@ -99,7 +99,7 @@ input {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    border: 2px solid;
+    border-right: 0.5px solid rgba(255, 255, 255, 0.15);
 }
 
 .login__form {
@@ -110,9 +110,20 @@ input {
     flex-direction: column;
 }
 
+.unsubscribe_card_new {
+    width: 450px !important;
+    margin: 10px !important;
+    background-color: #202020 !important;
+    color: #ccc !important;
+}
+
 @media (max-width: 768px) {
-    .unsubscribe__card {
-        width: 350px !important;
+    .login__container {
+        flex-direction: column;
+    }
+
+    .login__hero {
+        border-bottom: 1px solid #bbb;
     }
 
     .carbon_emission_value {
@@ -126,6 +137,10 @@ input {
 
     .carbon_emission_dashboard2 {
         flex-direction: column;
+    }
+
+    .unsubscribe_card_new {
+        width: 350px !important;
     }
 }
 
@@ -141,13 +156,6 @@ input {
     border: 1px solid #5ec4ac !important;
     margin-right: 1rem;
     margin-bottom: 0.25rem;
-}
-
-.unsubscribe__card {
-    width: 450px !important;
-    margin: 10px !important;
-    background-color: #202020 !important;
-    color: #ccc !important;
 }
 
 .carbon_emission_dashboard {

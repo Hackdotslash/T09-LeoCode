@@ -25,7 +25,7 @@ const UnsubscribeCard = ({ item, onUnsubscribe, onDelete }) => {
                 </Button>,
             ]}
             headStyle={{ color: "#fff" }}
-            className="unsubscribe__card"
+            className="unsubscribe_card_new"
         >
             <span>
                 <b>Email: </b>
