@@ -1,38 +1,165 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.login__container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #5ec4ac !important;
+}
+
+.login__button {
+    background-color: transparent !important;
+    border: 2px solid #5ec4ac !important;
+    margin-bottom: 0.5rem;
+    width: 100px !important;
+}
+
+.ant-card-actions {
+    background-color: #202020 !important;
+    border: none !important;
+}
+
+.ant-card-actions li {
+    border: none !important;
+}
+
+.ant-action-button {
+    background-color: transparent !important;
+    border: none !important;
+    color: #5ec4ac !important;
+    transition: all 250ms ease-in;
+}
+
+.ant-action-button:hover {
+    border-bottom: 1px solid #5ec4ac !important;
+}
+
+.ant-action-button a {
+    color: #5ec4ac !important;
+}
+
+.ant-action-button a:hover {
+    text-decoration: none;
+}
+
+input {
+    background-color: transparent !important;
+    color: #fff !important;
+}
+
+.input__login__element {
+    width: 300px !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.login__hero {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid;
+}
+
+.login__form {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .unsubscribe__card {
+        width: 350px !important;
+    }
+
+    .carbon_emission_value {
+        margin-bottom: 2rem;
+    }
+
+    .carbon_emission_dashboard {
+        height: auto !important;
+        padding: 20px;
+    }
+
+    .carbon_emission_dashboard2 {
+        flex-direction: column;
+    }
+}
+
+.carbon_emission_dashboard2 {
+    display: flex;
+    height: 100%;
+}
+
+.logout__button {
+    background-color: transparent !important;
+    border: none !important;
+    color: #5ec4ac !important;
+    border: 1px solid #5ec4ac !important;
+    margin-right: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.unsubscribe__card {
+    width: 450px !important;
+    margin: 10px !important;
+    background-color: #202020 !important;
+    color: #ccc !important;
+}
+
+.carbon_emission_dashboard {
+    width: 90%;
+    height: 180px;
+    margin-bottom: 2rem;
+    border: 1px solid;
+}
+
+.carbon_emission_value {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
