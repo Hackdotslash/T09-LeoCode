@@ -137,18 +137,31 @@ const Unsubscribe = () => {
                                         <div
                                             style={{
                                                 border: "3px solid #5ec4ac",
-                                                width: "140px",
-                                                height: "140px",
+                                                width: "160px",
+                                                height: "160px",
                                                 display: "flex",
                                                 flexDirection: "column",
                                                 justifyContent: "center",
                                                 alignItems: "center",
-                                                borderRadius: "70px",
+                                                borderRadius: "80px",
                                             }}
                                         >
+                                            <span
+                                                style={{
+                                                    color: "#ccc",
+                                                    textAlign: "center",
+                                                }}
+                                            >
+                                                Saved{" "}
+                                            </span>
                                             <h1>{count}g</h1>
-                                            <span style={{ color: "#ccc" }}>
-                                                Carbon Save
+                                            <span
+                                                style={{
+                                                    color: "#ccc",
+                                                    textAlign: "center",
+                                                }}
+                                            >
+                                                of CO2 emission
                                             </span>
                                         </div>
                                     </div>
