@@ -11,6 +11,9 @@ interface CO2Api {
     @POST("computer_sleep")
     suspend fun sleepPC() : String
 
+    @POST("shutdown")
+    suspend fun shutdownPC(): String
+
     companion object {
          fun start(context: Context, ip: String): CO2Api {
              val base_url = "http://${ip}:5000/"

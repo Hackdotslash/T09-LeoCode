@@ -40,6 +40,22 @@ class CO2ViewModel(private val context: Context) : ViewModel() {
         }
     }
 
+    fun shutdownPC(ip: String) {
+        val co2Api: CO2Api = CO2Api.start(context, ip)
+        ip?.let {
+            coroutineScope.launch {
+                try {
+                    val res = co2Api.shutdownPC()
+                    Log.d("CO2ViewModel", res)
+                    _toastMsg.value = res
+                }catch (e: Exception) {
+                    _toastMsg.value = e.localizedMessage
+                }
+
+            }
+        }
+    }
+
     fun doneShowingToast() {
         _toastMsg.value = null
     }

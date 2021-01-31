@@ -27,6 +27,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        btn_shutdown.setOnClickListener {
+            val ip = et_IP.text.toString()
+            ip?.let {
+                viewmodel.shutdownPC(it)
+            }
+        }
+
         viewmodel.toastMsg.observe(this, Observer {
             it?.let {
                 Toast.makeText(this, it, Toast.LENGTH_LONG).show()

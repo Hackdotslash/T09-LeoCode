@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="#eee"
         android:hint="Enter IP Address"
         android:background="@drawable/ip_input"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,25 +28,42 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Hed ProOS"
-
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#eee"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <Button
-        android:id="@+id/btn_sleep"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="#5ec4ac"
-        android:textColorHint="#ccc"
-        android:textColor="#fff"
-        android:text="Sleep"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_IP" />
+        app:layout_constraintTop_toBottomOf="@id/et_IP">
+
+        <Button
+            android:id="@+id/btn_sleep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#5ec4ac"
+            android:text="Sleep"
+            android:layout_marginRight="8dp"
+            android:textColor="#fff"
+            android:textColorHint="#ccc"
+            tools:layout_editor_absoluteX="174dp" />
+
+        <Button
+            android:id="@+id/btn_shutdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#5ec4ac"
+            android:text="Shutdown"
+            android:layout_marginLeft="8dp"
+            android:textColor="#fff"
+            android:textColorHint="#ccc"
+            tools:layout_editor_absoluteX="174dp" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView"
@@ -56,4 +74,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
