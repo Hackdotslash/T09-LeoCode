@@ -1,0 +1,38 @@
+[
+    {
+        "title": "Hed Mail",
+        "subTitle": "Mail monitoring system",
+        "description": "Mail monitoring system to reduce CO2 emission due to unwanted emails",
+        "image": "pngwing.com.png",
+        "tech_stack": ["React", "Flask", "Python", "IMAP", "Android", "Kotlin"],
+        "is_online": false,
+        "is_source_code": false
+    },
+    {
+        "title": "Hed Process",
+        "subTitle": "Process monitoring system",
+        "description": "Know which processes are using internet and emitting CO2",
+        "image": "pngwing.com.png",
+        "tech_stack": ["Flask", "Python", "psutils"],
+        "is_online": false,
+        "is_source_code": false
+    },
+    {
+        "title": "Hed Compress",
+        "subTitle": "Online file compressing",
+        "description": "Compress file before sending as attachments in mail so that less data is transferred and thus less CO2 is emitted",
+        "image": "pngwing.com.png",
+        "tech_stack": ["Flask", "Python"],
+        "is_online": false,
+        "is_source_code": false
+    },
+    {
+        "title": "Hed ProOS",
+        "subTitle": "Device monitoring",
+        "description": "Now you can manage your system through android app!",
+        "image": "pngwing.com.png",
+        "tech_stack": ["Android", "Kotlin", "Gradle"],
+        "is_online": false,
+        "is_source_code": false
+    }
+]

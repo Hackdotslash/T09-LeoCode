@@ -6,13 +6,14 @@ const { Meta } = Card;
 const CardLoading = ({ number }) => {
     return (
         <>
-            <Row>
+            <Row justify="center">
                 {_.times(number, (i) => (
                     <Card
                         key={i}
+                        bordered={false}
                         style={{
-                            maxWidth: 350,
-                            minWidth: 300,
+                            width: 400,
+                            backgroundColor: "#202020",
                             marginTop: 16,
                             marginRight: 16,
                         }}

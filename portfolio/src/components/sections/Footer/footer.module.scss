@@ -1,0 +1,21 @@
+.container {
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.svg__links {
+    width: 20px;
+    height: 20px;
+    fill: #ccc;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding-left: 1.5rem !important;
+    }
+    .svg__links {
+        margin-top: 0.5rem;
+    }
+}

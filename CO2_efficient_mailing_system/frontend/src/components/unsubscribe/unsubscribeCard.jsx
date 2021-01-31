@@ -6,9 +6,9 @@ const UnsubscribeCard = ({ item, onUnsubscribe, onDelete }) => {
     return (
         <Card
             title={item.account_name}
-            bordered={true}
+            bordered={false}
             actions={[
-                <Button>
+                <Button className="ant-action-button">
                     <a
                         href={item.link}
                         target="blank"
@@ -17,11 +17,15 @@ const UnsubscribeCard = ({ item, onUnsubscribe, onDelete }) => {
                         Unsubscribe
                     </a>
                 </Button>,
-                <Button onClick={() => onDelete(item.account_email)}>
+                <Button
+                    onClick={() => onDelete(item.account_email)}
+                    className="ant-action-button"
+                >
                     Delete All Emails
                 </Button>,
             ]}
-            style={{ width: 400, margin: "10px" }}
+            headStyle={{ color: "#fff" }}
+            className="unsubscribe_card_new"
         >
             <span>
                 <b>Email: </b>
