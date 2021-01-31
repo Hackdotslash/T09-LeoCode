@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
     Button,
+    Card,
     Divider,
     Empty,
     message,
@@ -97,10 +98,23 @@ const Unsubscribe = () => {
             {loading ? (
                 <div
                     style={{
-                        margin: "0px auto",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        flexDirection: "column",
                         padding: "20px 10px",
                     }}
                 >
+                    <Card
+                        loading={true}
+                        style={{
+                            width: "80%",
+                            backgroundColor: "#202020",
+                            marginTop: "20px",
+                            marginBottom: "2rem",
+                        }}
+                        bordered={false}
+                    ></Card>
                     <Skeleton active paragraph={{ rows: 0 }} />
                     <CardLoading number={8} />
                 </div>

@@ -11,12 +11,12 @@ import {
 } from "antd";
 import { useHistory } from "react-router-dom";
 import {
-    UserOutlined,
     LockOutlined,
+    WarningOutlined,
     EyeTwoTone,
     EyeInvisibleOutlined,
-    MailTwoTone,
     MailOutlined,
+    FileAddOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import list from "../../config";
@@ -50,8 +50,8 @@ const Login = () => {
         <div className="login__container">
             <div className="login__hero">
                 <Row>
-                    <Col>
-                        <Row justify="center" align="middle">
+                    <Col style={{ width: "100%" }}>
+                        <Row align="middle">
                             <img
                                 src={Hed}
                                 width="80"
@@ -73,14 +73,108 @@ const Login = () => {
                     </Col>
                     <Col>
                         <span style={{ color: "#bbb" }}>
-                            Sending 65 emails is roughly equivalent to driving
-                            1km in a car. In a year, an average person in the
-                            developed world adds 136kg of CO2 to their carbon
-                            footprint from the emails they send and receive.
-                            This is equivalent to an extra 320km driven in a
-                            car.
+                            once an email has been sent it’s out there forever,
+                            somewhere…
+                            <br />
+                            As the email travels across the internet, each
+                            server will use some electricity to temporarily
+                            store it, before passing it on. Sending 65 emails is
+                            roughly equivalent to driving 1km in a car. In a
+                            year, an average person in the developed world adds
+                            136kg of CO2 to their carbon footprint from the
+                            emails they send and receive. This is equivalent to
+                            an extra 320km driven in a car.
+                            <br></br>
+                            <br />
+                            Below are the average carbon footprints of different
+                            emails:
                         </span>
                     </Col>
+                    <Row style={{ width: "100%", marginTop: "2rem" }}>
+                        <Col
+                            style={{
+                                width: "30%",
+                                textAlign: "center",
+                                padding: "10px",
+                                marginRight: "10px",
+                            }}
+                        >
+                            <MailOutlined
+                                style={{
+                                    fontSize: "24px",
+                                    color: "#5ec4ac",
+                                    marginBottom: "1rem",
+                                }}
+                            />
+                            <h5 style={{ color: "#eee", margin: "0" }}>
+                                Normal Mail
+                            </h5>
+                            <span
+                                style={{
+                                    color: "#aaa",
+                                    fontSize: "13px",
+                                    lineHeight: "1.2px",
+                                }}
+                            >
+                                Responsible for <b>4 grams</b> of CO2 emission
+                            </span>
+                        </Col>
+                        <Col
+                            style={{
+                                width: "30%",
+                                textAlign: "center",
+                                padding: "10px",
+                                marginRight: "10px",
+                            }}
+                        >
+                            <WarningOutlined
+                                style={{
+                                    fontSize: "28px",
+                                    color: "#5ec4ac",
+                                    marginBottom: "1rem",
+                                }}
+                            />
+                            <h5 style={{ color: "#eee", margin: "0" }}>
+                                Spam Mail
+                            </h5>
+                            <span
+                                style={{
+                                    color: "#aaa",
+                                    fontSize: "13px",
+                                    lineHeight: "1.2px",
+                                }}
+                            >
+                                Responsible for <b>0.3 grams</b> of CO2 emission
+                            </span>
+                        </Col>
+                        <Col
+                            style={{
+                                width: "30%",
+                                textAlign: "center",
+                                padding: "10px",
+                            }}
+                        >
+                            <FileAddOutlined
+                                style={{
+                                    fontSize: "28px",
+                                    color: "#5ec4ac",
+                                    marginBottom: "1rem",
+                                }}
+                            />
+                            <h5 style={{ color: "#eee", margin: "0" }}>
+                                Mail with Attachment
+                            </h5>
+                            <span
+                                style={{
+                                    color: "#aaa",
+                                    fontSize: "13px",
+                                    lineHeight: "1.2px",
+                                }}
+                            >
+                                Responsible for <b>50 grams</b> of CO2 emission
+                            </span>
+                        </Col>
+                    </Row>
                 </Row>
             </div>
             <div style={{ padding: "20px" }} className="login__form">
