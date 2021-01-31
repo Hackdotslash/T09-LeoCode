@@ -22,6 +22,9 @@ const Header = ({ siteTitle }) => (
                         <Link to="#about">About Hedwig</Link>
                     </li>
                     <li className="memu_list_item">
+                        <Link to="#projects">Products</Link>
+                    </li>
+                    <li className="memu_list_item">
                         <Link to="#life">Timeline</Link>
                     </li>
                     <li className="memu_list_item">

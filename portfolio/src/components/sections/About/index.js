@@ -71,40 +71,6 @@ const About = ({ duration, anim, easing }) => {
                                 industry. Thus, thinking about the carbon
                                 footprints by internet is also important.
                             </p>
-                            <p
-                                data-sal={anim}
-                                data-sal-delay={duration}
-                                data-sal-easing={easing}
-                            >
-                                <big>Hed Mail</big> - Mail monitoring system to
-                                reduce CO2 emission due to unwanted emails
-                            </p>
-                            <p
-                                data-sal={anim}
-                                data-sal-delay={duration}
-                                data-sal-easing={easing}
-                            >
-                                <big>Hed Process</big> - Know which processes
-                                are using internet and emitting CO2
-                            </p>
-                            <p
-                                data-sal={anim}
-                                data-sal-delay={duration}
-                                data-sal-easing={easing}
-                            >
-                                <big>Hed Compress</big> - Compress files before
-                                broadcasting on the internet, thus consuming
-                                less data transfer through internet and
-                                subsequently less CO2 emission
-                            </p>
-                            <p
-                                data-sal={anim}
-                                data-sal-delay={duration}
-                                data-sal-easing={easing}
-                            >
-                                <big>Hed ProOS</big> - Now you can manage your
-                                system through android app!
-                            </p>
                         </div>
                         <div
                             data-sal={anim}
@@ -112,7 +78,7 @@ const About = ({ duration, anim, easing }) => {
                             data-sal-easing={easing}
                             className={Style.resume__link}
                         >
-                            <a href="link-to-resume">Go to Project</a>
+                            <a href="http://localhost:5000/">Go to Project</a>
                         </div>
                     </div>
                 </div>
